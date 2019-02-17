@@ -2,30 +2,89 @@
 <div class="form">
   <h2> Input STUB </h2>
   <form class="form-horizontal" {{action "createBuilding" on="submit"}}>
-    <div class="form-group">
-      <label for="bClass" class="col-md-2 control-label">Класс</label>
-      <div class="col-md-5">
-        {{input value=bclass class="form-control"}}
+    <div class="building">
+      <div class="form-group">
+        <label for="bClass" class="col-md-2 control-label">Класс</label>
+        <div class="col-md-5">
+          {{input value=bclass class="form-control"}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="street" class="col-md-2 control-label">Улица</label>
+        <div class="col-md-5">
+          {{input value=street class="form-control"}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="houseNumber" class="col-md-2 control-label">№ дома</label>
+        <div class="col-md-5">
+          {{input value=housenumber class="form-control"}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="floors" class="col-md-2 control-label">Кол-во этажей</label>
+        <div class="col-md-5">
+          {{input value=floors class="form-control"}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-10">
+          <button {{ action "showBlock"}} class="btn btn-sm btn-primary">Добавить блок</button>
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="street" class="col-md-2 control-label">Улица</label>
-      <div class="col-md-5">
-        {{input value=street class="form-control"}}
+    {{#if showblock}}
+      <div id="block" class="block" >
+        <div class="form-group">
+          <label for="area" class="col-md-2 control-label">Площадь</label>
+          <div class="col-md-5">
+            {{input value=area class="form-control"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="floor" class="col-md-2 control-label">Этаж</label>
+          <div class="col-md-5">
+            {{input value=floor class="form-control"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <button {{ action "showOffer"}} class="btn btn-sm btn-primary">Добавить сделку</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="houseNumber" class="col-md-2 control-label">№ дома</label>
-      <div class="col-md-5">
-        {{input value=housenumber class="form-control"}}
+    {{/if}}
+    {{#if showoffer}}
+      <div id="offer" class="offer" >
+        <div class="form-group">
+          <label for="offertype" class="col-md-2 control-label">Тип сделки</label>
+          <div class="col-md-5">
+            {{input value=offertype class="form-control"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-10">
+            <button {{ action "showPrice"}} class="btn btn-sm btn-primary">Добавить цену</button>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="floors" class="col-md-2 control-label">Кол-во этажей</label>
-      <div class="col-md-5">
-        {{input value=floors class="form-control"}}
+    {{/if}}
+    {{#if showprice}}
+      <div id="price" class="price" >
+        <div class="form-group">
+          <label for="pricevalue" class="col-md-2 control-label">Значение</label>
+          <div class="col-md-5">
+            {{input value=pricevalue class="form-control"}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="currency" class="col-md-2 control-label">Валюта</label>
+          <div class="col-md-5">
+            {{input value=currency class="form-control"}}
+          </div>
+        </div>
       </div>
-    </div>
+    {{/if}}
     <div class="form-group">
       <div class="col-sm-10">
         <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
@@ -39,11 +98,11 @@
   <h2> All Buildings </h2>
   <table>
     <tr>
-      <th>|  #  |</th>
-      <th>|КЛАСС|</th>
-      <th>|Улица|</th>
-      <th>|№ ДОМА|</th>
-      <th>|КОЛ-ВО ЭТАЖЕЙ|</th>
+      <th> |  #  | </th>
+      <th> |КЛАСС| </th>
+      <th> |Улица| </th>
+      <th> |№ ДОМА| </th>
+      <th> |КОЛ-ВО ЭТАЖЕЙ| </th>
     </tr>
     {{#each model as |building|}}
       <tr>
@@ -66,6 +125,18 @@
         <td>
           {{building.floors}}
           <br>
+        </td>
+        <td>
+          {{#each building.bloks as |block|}}
+            <tr>
+              <th>|Площадь|</th>
+              <th>|Этаж|</th>
+            </tr>
+            <tr>
+              <td>{{block.area}}</td>
+              <td>{{block.floor}}</td>
+            </tr>
+          {{/each}}
         </td>
       </tr>
     {{/each}}
