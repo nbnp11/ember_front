@@ -1,1 +1,32 @@
-{{outlet}}
+<h1> Building index </h1>
+<h2> Input STUB </h2>
+<br>
+<br>
+<table>
+  <tr>
+    <th>|КЛАСС|</th>
+    <th>|Улица|</th>
+    <th>|№ ДОМА|</th>
+    <th>|КОЛ-ВО ЭТАЖЕЙ|</th>
+  </tr>
+  {{#each model as |building|}}
+    <tr>
+      <th>
+        {{building.bClass}}
+        <br>
+      </th>
+      <th>
+        {{building.street}}
+        <br>
+      </th>
+      <th>
+        {{building.houseNumber}}
+        <br>
+      </th>
+      <th>
+        {{building.floors}}
+        <br>
+      </th>
+    </tr>
+  {{/each}}
+</table>
