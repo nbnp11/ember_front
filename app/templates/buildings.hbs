@@ -1,6 +1,6 @@
 <h1> Building index </h1>
 <div class="form">
-  <h2> Input STUB </h2>
+  <h2> Input </h2>
   <form class="form-horizontal" {{action "createBuilding" on="submit"}}>
     <div class="building">
       <div class="form-group">
@@ -127,7 +127,7 @@
           <br>
         </td>
         <td>
-          {{#each building.bloks as |block|}}
+          {{#each building.blocks as |block|}}
             <tr>
               <th>|Площадь|</th>
               <th>|Этаж|</th>
